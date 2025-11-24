@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QUANTUM EDGE v4.6</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-default">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <img src="code.png" height="197" />
+    <ul id="menu">
+      <li><button onclick="showSection('home')" id="menu-home">Home</button></li>
+      <li><button onclick="showSection('money-converter')" id="menu-money">Money Converter</button></li>
+      <li><button onclick="showSection('unit-converter')" id="menu-unit">Unit Converter</button></li>
+      <li class="dropdown">
+        <button class="dropbtn" id="menu-calculators">Calculators</button>
+        <div class="dropdown-content">
+          <button onclick="showSection('simple-calculator')" id="menu-simple">Simple</button>
+          <button onclick="showSection('scientific-calculator')" id="menu-scientific">Scientific</button>
+        </div>
+      </li>
+      <li><button onclick="showSection('about')" id="menu-about">About</button></li>
+      <li><button onclick="showSection('contact')" id="menu-contact">Contact</button></li>
+      <li><button onclick="showSection('settings')" id="menu-settings">Settings</button></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <div class="card-container">
+
+    <!-- Home -->
+    <div id="home" class="card active">
+      <h3 id="home-title">Welcome to QUANTUM EDGE v4.6</h3>
+      <p id="home-text">Your all-in-one dashboard for conversions and calculations.</p>
+    </div>
+
+    <!-- Money Converter -->
+    <div id="money-converter" class="card">
+      <h3 id="money-title">Money Converter</h3>
+      <input type="number" id="money-input" placeholder="Amount" />
+      <select id="from-currency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RWF">RWF</option>
+        <option value="KES">KES</option>
+      </select>
+      <select id="to-currency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RWF">RWF</option>
+        <option value="KES">KES</option>
+      </select>
+      <button onclick="convertMoney()">Convert</button>
+      <p id="money-result"></p>
+    </div>
+
+    <!-- Unit Converter -->
+    <div id="unit-converter" class="card">
+      <h3 id="unit-title">Unit Converter</h3>
+      <input type="number" id="unit-input" placeholder="Value" />
+      <select id="from-unit">
+        <option value="m">m</option>
+        <option value="km">km</option>
+        <option value="cm">cm</option>
+      </select>
+      <select id="to-unit">
+        <option value="m">m</option>
+        <option value="km">km</option>
+        <option value="cm">cm</option>
+      </select>
+      <button onclick="convertUnit()">Convert</button>
+      <p id="unit-result"></p>
+    </div>
+
+    <!-- Simple Calculator -->
+    <div id="simple-calculator" class="card">
+      <h3>Simple Calculator</h3>
+      <input type="text" id="simple-display" readonly />
+      <div class="calc-buttons">
+        <button onclick="appendToSimple('7')">7</button>
+        <button onclick="appendToSimple('8')">8</button>
+        <button onclick="appendToSimple('9')">9</button>
+        <button onclick="appendToSimple('/')">/</button>
+        <button onclick="appendToSimple('4')">4</button>
+        <button onclick="appendToSimple('5')">5</button>
+        <button onclick="appendToSimple('6')">6</button>
+        <button onclick="appendToSimple('*')">*</button>
+        <button onclick="appendToSimple('1')">1</button>
+        <button onclick="appendToSimple('2')">2</button>
+        <button onclick="appendToSimple('3')">3</button>
+        <button onclick="appendToSimple('-')">-</button>
+        <button onclick="appendToSimple('0')">0</button>
+        <button onclick="appendToSimple('.')">.</button>
+        <button onclick="calculateSimple()">=</button>
+        <button onclick="appendToSimple('+')">+</button>
+        <button onclick="clearSimple()">C</button>
+      </div>
+    </div>
+
+    <!-- Scientific Calculator -->
+    <div id="scientific-calculator" class="card">
+      <h3>Scientific Calculator</h3>
+      <input type="text" id="scientific-display" readonly />
+      <div class="calc-buttons">
+        <button onclick="appendToScientific('7')">7</button>
+        <button onclick="appendToScientific('8')">8</button>
+        <button onclick="appendToScientific('9')">9</button>
+        <button onclick="appendToScientific('/')">/</button>
+        <button onclick="sciFunc('sin')">sin</button>
+        <button onclick="appendToScientific('4')">4</button>
+        <button onclick="appendToScientific('5')">5</button>
+        <button onclick="appendToScientific('6')">6</button>
+        <button onclick="appendToScientific('*')">*</button>
+        <button onclick="sciFunc('cos')">cos</button>
+        <button onclick="appendToScientific('1')">1</button>
+        <button onclick="appendToScientific('2')">2</button>
+        <button onclick="appendToScientific('3')">3</button>
+        <button onclick="appendToScientific('-')">-</button>
+        <button onclick="sciFunc('tan')">tan</button>
+        <button onclick="appendToScientific('0')">0</button>
+        <button onclick="appendToScientific('.')">.</button>
+        <button onclick="calculateScientific()">=</button>
+        <button onclick="appendToScientific('+')">+</button>
+        <button onclick="sciFunc('sqrt')">√</button>
+        <button onclick="clearScientific()">C</button>
+        <button onclick="appendToScientific('^')">^</button>
+        <button onclick="sciFunc('log')">log</button>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="card">
+      <h3 id="about-title">About Us</h3>
+      <p>Welcome to   QUANTUM EDGE, the pinnacle of digital mastery. At   QUANTUM EDGE, our name reflects our philosophy: reaching the highest peak of innovation, precision, and limitless possibilities. We are not just a group—we are a force pushing the boundaries of what technology can achieve.<br><br>
+
+Our platform empowers users with advanced tools for calculations, Unity conversions, money conversions, and customizable accessibility settings. Every feature is crafted to elevate your digital experience, making complex tasks seamless and intuitive.<br><br>
+
+At   QUANTUM EDGE, we don’t follow limits—we redefine them. Step into a world where technology meets vision, and possibilities are infinite.</p>
+      <p>Team QUANTUM EDGE:</p>
+      <ul>
+        <li>IRATWUZUZA LOIC AUGUSTIN</li>
+        <li>NSHUTINZIZA MAXIME</li>
+        <li>JOON YOUNG MYOMBE</li>
+        <li>ADJIRA BAKRAN KEVIN</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="card">
+      <h3 id="contact-title">Contact Us</h3>
+      <p>Instagram: <a href="https://instagram.com/@adjirabkiran">ADJIRA</a></p>
+      <p>Facebook: <a href="https://facebook.com/adjirabkiran">ADJIRA</a></p>
+      <p>Email: <a href="mailto:iratwuzuzaroic@gmail.com">LOIC AUGUSTIN</a></p>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="card">
+      <h3 id="settings-title">Settings</h3>
+      <label>Theme:</label>
+      <select id="theme-select">
+        <option value="default">Default</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+
+      <label>Language:</label>
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Swahili">Swahili</option>
+        <option value="Kinyarwanda">Kinyarwanda</option>
+        <option value="Arabic">Arabic</option>
+      </select>
+      <button onclick="saveSettings()">Save</button>
+    </div>
+
+  </div>
+
+  <footer id="footer-text" style="text-align:center; margin:10px;">
+    All rights reserved © 2025
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

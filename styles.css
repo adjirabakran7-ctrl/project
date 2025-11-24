@@ -1,0 +1,93 @@
+/* Root variables for themes */
+:root {
+    --bg-image: url(difault.png);
+    --card-bg: rgba(255,255,255,0.15);
+    --text-color: #d3ffd7;
+    --button-bg: #458643;
+    --button-hover: #375737;
+}
+
+/* Dark theme */
+.theme-dark {
+    --bg-image: url(dark.png);
+    --card-bg: rgba(33, 34, 48, 0.85);
+    --text-color: #adaaaa;
+    --button-bg: #1e192e;
+    --button-hover: #666;
+}
+
+/* Light theme */
+.theme-light {
+    --bg-image: url(light.png);
+    --card-bg: rgba(93, 146, 214, 0.9);
+    --text-color: #c8e3f3;
+    --button-bg: #354b7a;
+    --button-hover: #495b6e;
+}
+
+/* Body */
+body {
+    margin:0; padding:0; min-height:100vh;
+    display:flex; flex-direction:column;
+    font-family: Arial, sans-serif;
+    background-image: var(--bg-image);
+    background-size: cover;       /* Ifoto ijyane n'ubunini bw'urupapuro */
+    background-position: center;  /* Ifoto iba hagati */
+    background-repeat: no-repeat; /* Ntizisubireho */
+}
+
+/* Top menu */
+.sidebar {
+    display:flex; flex-wrap:wrap; justify-content:center;
+    background: var(--card-bg);
+    padding: 10px 0; backdrop-filter:blur(15px);
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    position:fixed; top:0; left:0; width:100%; z-index:10;
+    border-bottom-left-radius:12px; border-bottom-right-radius:12px;
+}
+
+.sidebar img { display:none; } /* Hide logo if needed */
+
+.sidebar ul { display:flex; list-style:none; padding:0; margin:0; flex-wrap:wrap; justify-content:center; }
+.sidebar li { margin:5px 10px; position:relative; }
+.sidebar button {
+    padding:10px 18px; background:var(--button-bg);
+    color:var(--text-color); border:none; border-radius:8px;
+    cursor:pointer; transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.sidebar button:hover { background:var(--button-hover); transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.25); }
+
+/* Dropdown for horizontal menu */
+.dropdown-content {
+    display:none; position:absolute; top:40px; left:0;
+    background:var(--card-bg); min-width:160px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25); border-radius:8px; z-index:20;
+    flex-direction:column;
+}
+.dropdown:hover .dropdown-content { display:flex; flex-direction:column; }
+.dropdown-content button:hover { background:var(--button-hover); }
+
+/* Card container */
+.card-container { margin-top:80px; /* Space for top menu */ flex:1; display:flex; align-items:center; justify-content:center; }
+
+/* Cards */
+.card { background:var(--card-bg); backdrop-filter:blur(15px); border-radius:12px; padding:25px; width:420px; box-shadow:0 6px 20px rgba(0,0,0,0.25);
+       display:none; opacity:0; transform:translateY(30px); transition:opacity 0.6s, transform 0.6s, background 0.6s; }
+.card.active { display:block; opacity:1; transform:translateY(0); }
+
+/* Calculator buttons */
+.calc-buttons { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+.calc-buttons button { padding:12px; background:var(--button-bg); color:var(--text-color); border:none; border-radius:8px; cursor:pointer; transition: background 0.3s, transform 0.2s, box-shadow 0.3s; }
+.calc-buttons button:hover { background:var(--button-hover); transform:scale(1.1); box-shadow:0 4px 12px rgba(0,0,0,0.25); }
+
+/* Inputs & selects */
+input, select, textarea { width:100%; padding:12px; margin:6px 0; border-radius:8px; border:none; background:rgba(255,255,255,0.25); color:var(--text-color); transition: background 0.3s, color 0.3s; }
+input:focus, select:focus, textarea:focus { outline:none; background:rgba(255,255,255,0.35); }
+
+/* General buttons */
+button { background:var(--button-bg); color:var(--text-color); border:none; padding:12px; border-radius:8px; cursor:pointer; transition: background 0.3s, transform 0.2s, box-shadow 0.3s; margin:5px 0; }
+button:hover { background:var(--button-hover); transform:scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
+
+/* Links */
+a { color:var(--text-color); text-decoration:none; }
+a:hover { text-decoration:underline; }
